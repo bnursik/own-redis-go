@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-
 	"own-redis/internal/server"
 	"own-redis/internal/storage"
 )
@@ -31,6 +30,11 @@ func main() {
 
 	if *help {
 		fmt.Println(usageText)
+		os.Exit(0)
+	}
+
+	if *port < 1024 {
+		fmt.Println("Invalid port number!")
 		os.Exit(0)
 	}
 
