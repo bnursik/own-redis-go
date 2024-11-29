@@ -1,13 +1,11 @@
 package server
 
 import (
-	"fmt"
 	"log"
 	"net"
+	"own-redis/internal/storage"
 	"strconv"
 	"strings"
-
-	"own-redis/internal/storage"
 )
 
 type UDPServer struct {
@@ -100,8 +98,12 @@ func (s *UDPServer) handleSetCommand(parts []string) string {
 			return "(error) ERR invalid expire time"
 		}
 		key, value = parts[1], parts[2:pxInd]
+
+		if len(parts[pxInd+1:]) != 1 {
+			return "(error) ERR invalid expire time"
+		}
+
 		ms, err := strconv.ParseInt(parts[pxInd+1], 10, 64)
-		fmt.Println(parts[pxInd])
 		if err != nil || ms <= 0 {
 			return "(error) ERR invalid expire time"
 		}
