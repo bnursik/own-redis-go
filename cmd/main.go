@@ -10,8 +10,7 @@ import (
 	"own-redis/internal/storage"
 )
 
-//TODO gofmt
-
+// TODO gofmt
 const (
 	defaultPort = 8080
 	usageText   = `Own Redis

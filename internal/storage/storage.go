@@ -30,7 +30,6 @@ func (s *Store) Set(key string, value string, expireMs int64) {
 		expiration = time.Now().Add(time.Duration(expireMs) * time.Millisecond)
 	}
 
-
 	s.items[key] = Entry{
 		value:      value,
 		expiration: expiration,
